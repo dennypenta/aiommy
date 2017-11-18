@@ -4,16 +4,16 @@ Something about how to use and what is it for.
 ### Installation ###
 pip install aiommy
 
-# TODO:
-  test installing
-  refactoring
+### TODO: ###
+  - test installing
+  - refactoring
 
-  license
-  makefile
-  travis
+  - license
+  - makefile
+  - travis
 
-  responses
-  validators
-  views
+  - responses
+  - validators
+  - views
 
-  other extensions for peewee
+  - other extensions for peewee
