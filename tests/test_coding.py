@@ -1,12 +1,13 @@
 from aiohttp.test_utils import unittest_run_loop
 
-from core.unittest import AioTestCase
-from auth.coding import encode, decode
+
+from aiommy.unittest import AioTestCase
+from aiommy.middlewares import encode, decode
 
 
 class CodingTestCase(AioTestCase):
     @unittest_run_loop
-    async def test_coding(self):
+    async def coding_test(self):
         payload = {'id': 1}
         token = encode(payload)
         self.assertTrue(isinstance(token, str))

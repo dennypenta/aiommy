@@ -1,13 +1,10 @@
-from app import settings
-
-
 class BasePagination(object):
     """
     Class that make queryset paginated
     """
     model = None
 
-    def __init__(self, cursor, items_per_page=settings.PAGINATE_BY, model=None):
+    def __init__(self, cursor, items_per_page, model):
         """
         :param cursor: field that would be direction for pagination
         :param items_per_page: items per each page
@@ -15,14 +12,7 @@ class BasePagination(object):
         """
         self._cursor = cursor
         self._items_per_page = items_per_page
-
-        if model is None and self.model is None:
-            raise RuntimeError(
-                'Pagination class should either include a `model` attribute '
-                'or pass model to initializer'
-            )
-        if model:
-            self.model = model
+        self.model = model
 
     @property
     def items_per_page(self):

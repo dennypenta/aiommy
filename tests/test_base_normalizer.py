@@ -1,20 +1,16 @@
 from aiohttp.test_utils import unittest_run_loop
-import peewee
 
-from core.unittest import AioTestCase
-from core.model import Model
-from core.normalizers import BaseNormalizer
+from aiommy.unittest import AioTestCase
+from aiommy.normalizers import BaseNormalizer
+
+from tests.fixtures import ExtendedTestModel
 
 
 class BaseNormalizerTestCase(AioTestCase):
     def setUp(self):
         super().setUp()
 
-        class TestModel(Model):
-            data1 = peewee.IntegerField()
-            data2 = peewee.CharField(max_length=20)
-
-        self.model = TestModel
+        self.model = ExtendedTestModel
         self.normalizer = BaseNormalizer()
         self.instance = self.model(id=1, data1=1, data2='2')
         self.expected = {'id': 1, 'data1': 1, 'data2': '2'}

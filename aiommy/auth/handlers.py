@@ -1,6 +1,5 @@
 from urllib import request, parse, error
 import json
-import os
 import hashlib
 import hmac
 

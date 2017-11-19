@@ -1,7 +1,7 @@
 from aiohttp.test_utils import unittest_run_loop
 
-from core.unittest import AioTestCase
-from core.json import dumps
+from aiommy.unittest import AioTestCase
+from aiommy.json import dumps
 
 import datetime
 

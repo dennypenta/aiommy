@@ -3,7 +3,7 @@ import json
 from aiohttp import web
 from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop
 
-from core.base import JsonifyResponseView
+from aiommy.views import JsonifyResponseView
 
 
 class JsonifyResponseViewTestCase(AioHTTPTestCase):

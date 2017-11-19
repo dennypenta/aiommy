@@ -1,6 +1,6 @@
 import datetime
 
-from core.dateutils import to_iso
+from aiommy.dateutils import to_iso
 from models import Event, Photo, User, FavoritePhoto
 
 

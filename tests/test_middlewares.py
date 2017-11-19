@@ -2,10 +2,9 @@ from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop, \
     make_mocked_request
 from aiohttp import web
 
-from app.init import make_sub_app_api_v1
-from core.middlewares import permissions_middleware, auth_middleware, logging_middeleware_factory,\
+from aiommy.middlewares import permissions_middleware, auth_middleware, logging_middeleware_factory,\
     encode, content_type_setter_middleware_factory
-from core.permissions.base import BasePermission
+from aiommy.permissions.base import BasePermission
 
 import logging
 
@@ -110,7 +109,7 @@ class AuthMiddlewareTestCase(MiddlewareTestCase):
 
 class LoggingMiddlewareTestCase(MiddlewareTestCase):
     def get_app(self):
-        return make_sub_app_api_v1()
+        return web.Application()
 
     def setUp(self):
         super().setUp()

@@ -1,8 +1,8 @@
 from aiohttp.test_utils import unittest_run_loop
-from core.unittest import AioTestCase
+from aiommy.unittest import AioTestCase
 import pytz
 
-from core import dateutils
+from aiommy import dateutils
 
 import datetime
 import re

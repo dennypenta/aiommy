@@ -1,4 +1,4 @@
-from core.paginations.base import BaseCursorPagination
+from aiommy.paginations.base import BaseCursorPagination
 
 
 class FallingPagination(BaseCursorPagination):

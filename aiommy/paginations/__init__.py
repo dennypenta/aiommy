@@ -1,6 +1,6 @@
-from core.paginations.base import BasePagination, BaseCursorPagination
-from core.paginations.falling import FallingPagination
-from core.paginations.growing import GrowingPagination
+from aiommy.paginations.base import BasePagination, BaseCursorPagination
+from aiommy.paginations.falling import FallingPagination
+from aiommy.paginations.growing import GrowingPagination
 
 
 NEXT = 'next'

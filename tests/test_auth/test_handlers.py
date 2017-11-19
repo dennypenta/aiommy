@@ -1,10 +1,10 @@
-import unittest
-from unittest import mock
 import io
 from urllib import error
+import unittest
+from unittest import mock
 import json
 
-from auth.handlers import FacebookDispatcher, GoogleDispatcher, OAuthException, \
+from aiommy.auth.handlers import FacebookDispatcher, GoogleDispatcher, OAuthException, \
     ApiDeprecatedError, OAuthGateway, OAuthProfile
 
 

@@ -2,9 +2,9 @@ from aiohttp.test_utils import unittest_run_loop, \
     make_mocked_request
 from aiohttp import web
 
-from core.unittest import AioTestCase
-from auth.middlewares import auth_middleware
-from auth.coding import encode
+from aiommy.unittest import AioTestCase
+from aiommy.auth.middlewares import auth_middleware
+from aiommy.auth.coding import encode
 
 
 class MiddlewareTestCase(AioTestCase):

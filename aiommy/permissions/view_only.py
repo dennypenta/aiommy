@@ -1,6 +1,6 @@
 from aiohttp import web
 
-from core.permissions.base import BasePermission
+from aiommy.permissions.base import BasePermission
 
 
 class ViewOnly(BasePermission):

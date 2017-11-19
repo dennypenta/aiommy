@@ -1,7 +1,7 @@
 from playhouse import shortcuts
 
 
-class CoreNormalizer(object):
+class aiommyNormalizer(object):
     fields = None
 
     def _model_to_dict(self, model_object):
@@ -16,6 +16,6 @@ class CoreNormalizer(object):
         return shortcuts.model_to_dict(model_object)
 
 
-class BaseNormalizer(CoreNormalizer):
+class BaseNormalizer(aiommyNormalizer):
     def _model_to_dict(self, model_object):
         return shortcuts.model_to_dict(model_object)

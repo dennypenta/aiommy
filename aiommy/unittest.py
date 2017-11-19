@@ -1,13 +1,11 @@
 from aiohttp.test_utils import AioHTTPTestCase
-import peewee
 import peewee_async
 
-from core.model import Model
-from core.dateutils import to_iso
+from aiommy.dateutils import to_iso
 
-import unittest
 import datetime
 import asyncio
+import unittest
 
 
 class AioTestCase(unittest.TestCase):
@@ -84,10 +82,3 @@ class IntegrationTestCase(AioHTTPTestCase):
         self.loop.run_until_complete(self.manager.close())
         self.database.drop_tables(self.models, safe=True, cascade=True)
         super().tearDown()
-
-
-class TestingPaginationModel(Model):
-    date = peewee.DateTimeField()
-
-    class Meta:
-        db_table = 'test_table'

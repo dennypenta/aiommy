@@ -1,2 +1,2 @@
-from core.permissions.auth import AuthPermission
-from core.permissions.view_only import ViewOnly
+from aiommy.permissions.auth import AuthPermission
+from aiommy.permissions.view_only import ViewOnly

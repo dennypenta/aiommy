@@ -7,6 +7,7 @@ pip install aiommy
 ### TODO: ###
   - test installing
   - refactoring
+  - safely managing testing database
 
   - license
   - makefile

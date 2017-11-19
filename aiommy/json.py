@@ -1,11 +1,10 @@
 import json
 import datetime
 
-from core import dateutils
-from app import settings
+from aiommy import dateutils
 
 
-def dumps(data):
+def dumps(data, indent=None):
     def handler(entity):
         if isinstance(entity, datetime.datetime):
             return dateutils.to_iso(entity)
@@ -17,7 +16,4 @@ def dumps(data):
             and override default json handler
         """)
 
-    indent = None
-    if settings.DEV:
-        indent = 4
     return json.dumps(data, default=handler, indent=indent)

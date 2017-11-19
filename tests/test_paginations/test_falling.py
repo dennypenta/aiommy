@@ -1,15 +1,18 @@
 from aiohttp.test_utils import unittest_run_loop
 
-from core.unittest import ModelTestCase, TestingPaginationModel
-from core.db import init_test_db
-from core.paginations.growing import GrowingPagination
-from app import settings
+from aiommy.unittest import ModelTestCase
+from aiommy.paginations.falling import FallingPagination
+
+from tests.fixtures import TEST_DB, TestingPaginationModel
 
 import datetime
 
 
-class GrowingPaginationTestCase(ModelTestCase):
-    database = init_test_db()
+PAGINATE_BY = 10
+
+
+class FallingPaginationTestCase(ModelTestCase):
+    database = TEST_DB
     models = [TestingPaginationModel]
 
     def create_fixtures(self):
@@ -21,7 +24,8 @@ class GrowingPaginationTestCase(ModelTestCase):
         ) for i in range(self.objects_number))
         TestingPaginationModel.insert_many(objects).execute()
 
-        self.paginator = GrowingPagination(TestingPaginationModel.date,
+        self.paginator = FallingPagination(TestingPaginationModel.date,
+                                           PAGINATE_BY,
                                            model=TestingPaginationModel)
 
     @unittest_run_loop
@@ -30,37 +34,38 @@ class GrowingPaginationTestCase(ModelTestCase):
         through = self.now - datetime.timedelta(days=self.recomend_delta_for_testing)
         paginated = self.paginator.next(queryset, through, self.recomend_delta_for_testing)
 
-        self.assertEqual(len(paginated), settings.PAGINATE_BY)
+        self.assertEqual(len(paginated), PAGINATE_BY)
         for obj in paginated:
-            self.assertGreaterEqual(obj.date, through)
+            self.assertLessEqual(obj.date, through)
 
     @unittest_run_loop
     async def test_previous_page(self):
+        last_id = 30
         queryset = TestingPaginationModel.select()
-        through = self.now - datetime.timedelta(days=self.recomend_delta_for_testing)
-        paginated = self.paginator.previous(queryset, through, self.recomend_delta_for_testing)
+        through = self.now - datetime.timedelta(days=30)
+        paginated = self.paginator.previous(queryset, through, last_id)
 
-        self.assertGreater(len(paginated), settings.PAGINATE_BY)
+        self.assertGreater(len(paginated), PAGINATE_BY)
         for obj in paginated:
-            self.assertLessEqual(obj.date, through)
+            self.assertGreaterEqual(obj.date, through)
 
     @unittest_run_loop
     async def test_first_page(self):
         queryset = TestingPaginationModel.select()
         paginated = self.paginator.first(queryset, None, None)
 
-        self.assertEqual(len(paginated), settings.PAGINATE_BY)
+        self.assertEqual(len(paginated), PAGINATE_BY)
 
     @unittest_run_loop
     async def test_items_per_page(self):
         queryset = TestingPaginationModel.select()
         paginated = self.paginator.first(queryset, None, None)
 
-        self.assertEqual(len(paginated), settings.PAGINATE_BY)
+        self.assertEqual(len(paginated), PAGINATE_BY)
 
 
-class GrowingLastIdTestCase(ModelTestCase):
-    database = init_test_db()
+class FallingLastIdTestCase(ModelTestCase):
+    database = TEST_DB
     models = [TestingPaginationModel]
 
     def create_fixtures(self):
@@ -72,7 +77,8 @@ class GrowingLastIdTestCase(ModelTestCase):
             dict(id=4, date=datetime.datetime.utcnow() + datetime.timedelta(days=2)),
         ]
         TestingPaginationModel.insert_many(self.objects).execute()
-        self.paginator = GrowingPagination(TestingPaginationModel.date,
+        self.paginator = FallingPagination(TestingPaginationModel.date,
+                                           PAGINATE_BY,
                                            model=TestingPaginationModel)
 
     @unittest_run_loop
@@ -83,6 +89,6 @@ class GrowingLastIdTestCase(ModelTestCase):
 
         for obj in paginated:
             try:
-                self.assertGreater(obj.date, self.duplicated_date)
+                self.assertLess(obj.date, self.duplicated_date)
             except AssertionError:
                 self.assertGreater(obj.id, last_id)

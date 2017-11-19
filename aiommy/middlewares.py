@@ -2,8 +2,6 @@ from aiohttp import web
 import jwt
 from jwt.exceptions import DecodeError
 
-from app import settings
-
 
 class AnonymousUser(dict):
     def __bool__(self):
@@ -13,11 +11,11 @@ class AnonymousUser(dict):
         return 'Anonymous'
 
 
-def encode(payload, secret=settings.JWT_SECRET, algorithm='HS256'):
+def encode(payload, secret='', algorithm='HS256'):
     return jwt.encode(payload, secret, algorithm=algorithm)
 
 
-def decode(encoded, secret=settings.JWT_SECRET, algorithms=['HS256']):
+def decode(encoded, secret='', algorithms=['HS256']):
     return jwt.decode(encoded, secret, algorithms=algorithms)
 
 
