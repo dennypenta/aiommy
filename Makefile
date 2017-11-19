@@ -18,5 +18,6 @@ packaging:
 	python setup.py sdist
 	python setup.py bdist_wheel
 	twine upload dist/*
+	rm dist/aiommy-*
 
 release: flake isort test packaging

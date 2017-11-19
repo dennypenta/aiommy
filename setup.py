@@ -33,5 +33,5 @@ setup(
 
     packages=['aiommy'],
 
-    install_requires=['aiohttp', 'cerberus']
+    install_requires=['aiohttp', 'cerberus', 'pytz', 'peewee', 'peewee_async', 'PyJWT', 'psycopg2', 'aiopg']
 )
