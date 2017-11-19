@@ -1,11 +1,11 @@
-from aiohttp.test_utils import unittest_run_loop
-from aiommy.unittest import AioTestCase
-import pytz
-
-from aiommy import dateutils
-
 import datetime
 import re
+
+import pytz
+from aiohttp.test_utils import unittest_run_loop
+
+from aiommy import dateutils
+from aiommy.unittest import AioTestCase
 
 
 class DateUtilsTestCase(AioTestCase):

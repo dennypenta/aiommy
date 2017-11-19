@@ -1,8 +1,7 @@
-from urllib import request, parse, error
-import json
 import hashlib
 import hmac
-
+import json
+from urllib import error, parse, request
 
 PROVIDERS = (
     'facebook',

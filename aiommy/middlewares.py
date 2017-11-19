@@ -1,5 +1,5 @@
-from aiohttp import web
 import jwt
+from aiohttp import web
 from jwt.exceptions import DecodeError
 
 

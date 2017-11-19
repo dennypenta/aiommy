@@ -1,10 +1,8 @@
 from aiohttp.test_utils import unittest_run_loop
 
-from aiommy.unittest import ModelTestCase
 from aiommy.paginations.base import BaseCursorPagination
-
-from tests.fixtures import TestModel, TEST_DB
-
+from aiommy.unittest import ModelTestCase
+from tests.fixtures import TEST_DB, TestModel
 
 PAGINATE_BY = 10
 

@@ -1,9 +1,9 @@
+import datetime
+
 from aiohttp.test_utils import unittest_run_loop
 
-from aiommy.unittest import AioTestCase
 from aiommy.json import dumps
-
-import datetime
+from aiommy.unittest import AioTestCase
 
 
 class JsonTestCase(AioTestCase):

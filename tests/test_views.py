@@ -35,4 +35,3 @@ class JsonifyResponseViewTestCase(AioHTTPTestCase):
         response = await self.client.get('/')
         text = await response.text()
         self.assertTrue(text == '{\n    "body": "ok"\n}' or text == '{"body": "ok"}')
-

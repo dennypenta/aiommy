@@ -8,6 +8,7 @@ pip install aiommy
   - test installing
   - refactoring
   - safely managing testing database
+  - make test runner for explicit set testing database and database driver
 
   - license
   - makefile

@@ -1,11 +1,12 @@
 import io
-from urllib import error
+import json
 import unittest
 from unittest import mock
-import json
+from urllib import error
 
-from aiommy.auth.handlers import FacebookDispatcher, GoogleDispatcher, OAuthException, \
-    ApiDeprecatedError, OAuthGateway, OAuthProfile
+from aiommy.auth.handlers import (ApiDeprecatedError, FacebookDispatcher,
+                                  GoogleDispatcher, OAuthException,
+                                  OAuthGateway, OAuthProfile)
 
 
 class OtherOAuthGatewayTestCase(unittest.TestCase):

@@ -3,7 +3,6 @@ import peewee_async
 
 from aiommy.unittest import ModelTestCase
 
-
 TEST_DB = peewee_async.PooledPostgresqlDatabase(
     'test_db',
     user='denny',
@@ -36,4 +35,3 @@ class PaginationTestCase(ModelTestCase):
         TestingPaginationModel.objects = peewee_async.Manager(self.database)
         self.models.append(TestingPaginationModel)
         super().setUp()
-

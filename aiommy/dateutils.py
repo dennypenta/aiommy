@@ -1,7 +1,6 @@
-import pytz
-
 import datetime
 
+import pytz
 
 FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 

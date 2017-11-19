@@ -1,12 +1,14 @@
-from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop, \
-    make_mocked_request
-from aiohttp import web
-
-from aiommy.middlewares import permissions_middleware, auth_middleware, logging_middeleware_factory,\
-    encode, content_type_setter_middleware_factory
-from aiommy.permissions.base import BasePermission
-
 import logging
+
+from aiohttp import web
+from aiohttp.test_utils import (AioHTTPTestCase, make_mocked_request,
+                                unittest_run_loop)
+
+from aiommy.middlewares import (auth_middleware,
+                                content_type_setter_middleware_factory, encode,
+                                logging_middeleware_factory,
+                                permissions_middleware)
+from aiommy.permissions.base import BasePermission
 
 
 class MiddlewareTestCase(AioHTTPTestCase):

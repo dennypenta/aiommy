@@ -1,8 +1,7 @@
 import datetime
 
 from aiommy.dateutils import to_iso
-from models import Event, Photo, User, FavoritePhoto
-
+from models import Event, FavoritePhoto, Photo, User
 
 photo_keys = [
     '15834214258_26b1254bff_k.jpg',

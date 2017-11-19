@@ -1,0 +1,8 @@
+aiohttp
+cerberus
+PyJWT
+pytz
+peewee
+peewee_async
+psycopg2
+aiopg

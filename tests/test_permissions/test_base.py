@@ -1,4 +1,4 @@
-from aiohttp.test_utils import unittest_run_loop, make_mocked_request
+from aiohttp.test_utils import make_mocked_request, unittest_run_loop
 
 from aiommy.permissions.base import BasePermission
 from aiommy.unittest import AioTestCase

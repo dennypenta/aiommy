@@ -1,11 +1,11 @@
-from aiohttp.test_utils import AioHTTPTestCase
+import asyncio
+import datetime
+import unittest
+
 import peewee_async
+from aiohttp.test_utils import AioHTTPTestCase
 
 from aiommy.dateutils import to_iso
-
-import datetime
-import asyncio
-import unittest
 
 
 class AioTestCase(unittest.TestCase):

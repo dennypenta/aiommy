@@ -1,12 +1,10 @@
-from aiohttp.test_utils import unittest_run_loop
-
-from aiommy.unittest import ModelTestCase
-from aiommy.paginations.falling import FallingPagination
-
-from tests.fixtures import TEST_DB, TestingPaginationModel
-
 import datetime
 
+from aiohttp.test_utils import unittest_run_loop
+
+from aiommy.paginations.falling import FallingPagination
+from aiommy.unittest import ModelTestCase
+from tests.fixtures import TEST_DB, TestingPaginationModel
 
 PAGINATE_BY = 10
 
