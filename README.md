@@ -12,6 +12,7 @@ pip install aiommy
   - license
   - makefile
   - travis
+  - separate dev dependencies
 
   - responses
   - validators
