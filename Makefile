@@ -15,10 +15,8 @@ isort:
 	isort -rc tests
 
 packaging:
-	python setup.py sdist
 	python setup.py bdist_wheel
 	twine upload dist/*
-
 	rm dist/*
 
 release: flake isort test packaging

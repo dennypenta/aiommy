@@ -19,7 +19,9 @@ class MiddlewareTestCase(AioTestCase):
 
 class AuthMiddlewareTestCase(MiddlewareTestCase):
     def setUp(self):
-        async def handler(self, request):
+        super().setUp()
+
+        async def handler(request):
             if request.user:
                 return web.HTTPOk()
             return web.HTTPForbidden()
