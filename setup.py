@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name='aiommy',
-    version='0.0.2',
+    version='0.0.3',
 
     description='A helpful tools for building web API',
     long_description=long_description,
