@@ -3,7 +3,7 @@ from jwt.exceptions import DecodeError
 from aiommy.auth.coding import decode
 
 
-def read_token(header):
+def read_token(header, secret):
     try:
         type, token = header.split(' ')
     except ValueError:
@@ -13,20 +13,22 @@ def read_token(header):
         return None
 
     try:
-        return decode(token)
+        return decode(token, secret)
     except DecodeError:
         return None
 
 
-async def auth_middleware(app, handler):
-    async def middleware_handler(request):
-        auth_header = request.headers.get('Authorization')
-        if not auth_header:
-            request.user = None
+def auth_middleware_factory(secret):
+    async def auth_middleware(app, handler):
+        async def middleware_handler(request):
+            auth_header = request.headers.get('Authorization')
+            if not auth_header:
+                request.user = None
 
-        else:
-            request.user = read_token(auth_header)
+            else:
+                request.user = read_token(auth_header, secret)
 
-        return await handler(request)
+            return await handler(request)
 
-    return middleware_handler
+        return middleware_handler
+    return auth_middleware
