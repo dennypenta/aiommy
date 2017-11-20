@@ -1,4 +1,3 @@
-from aiommy.paginations.base import BasePagination, BaseCursorPagination
 from aiommy.paginations.falling import FallingPagination
 from aiommy.paginations.growing import GrowingPagination
 
