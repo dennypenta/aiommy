@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 with open('README.md', encoding='utf-8') as f:
@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name='aiommy',
-    version='0.0.3',
+    version='0.0.4',
 
     description='A helpful tools for building web API',
     long_description=long_description,
@@ -31,7 +31,7 @@ setup(
 
     keywords='Web API',
 
-    packages=['aiommy'],
+    packages=find_packages(),
 
     install_requires=['aiohttp', 'cerberus', 'pytz', 'peewee', 'peewee_async', 'PyJWT', 'psycopg2', 'aiopg']
 )

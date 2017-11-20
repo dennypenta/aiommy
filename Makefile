@@ -15,12 +15,10 @@ isort:
 	isort -rc tests
 
 packaging:
-	rm dist/aiommy-*
-
 	python setup.py sdist
 	python setup.py bdist_wheel
 	twine upload dist/*
 
-	rm dist/aiommy-*
+	rm dist/*
 
 release: flake isort test packaging
