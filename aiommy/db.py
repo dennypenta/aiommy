@@ -1,7 +1,7 @@
-import peewee_async
-import peewee
-
 import warnings
+
+import peewee
+import peewee_async
 
 
 class Manager(object):

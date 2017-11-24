@@ -1,9 +1,9 @@
-from aiommy.db import inject_db, Manager
+import unittest
+
 from peewee import Model
 
+from aiommy.db import Manager, inject_db
 from tests.fixtures import TEST_DB
-
-import unittest
 
 
 class InjectDbTestCase(unittest.TestCase):

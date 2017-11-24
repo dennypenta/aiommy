@@ -1,6 +1,6 @@
-from aiommy.json import dumps
-
 from aiohttp.web import HTTPException
+
+from aiommy.json import dumps
 
 
 class JsonResponse(HTTPException):
