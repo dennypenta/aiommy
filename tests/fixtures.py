@@ -1,20 +1,31 @@
 import peewee
 import peewee_async
+from playhouse.shortcuts import RetryOperationalError
 
 from aiommy.unittest import ModelTestCase
 
+from functools import wraps
+DB_NAME = 'test_db'
+DB_OPTIONS = {
+    'user': 'denny'
+}
+
 TEST_DB = peewee_async.PooledPostgresqlDatabase(
-    'test_db',
-    user='denny',
+    DB_NAME,
+    **DB_OPTIONS,
 )
 
 
+class AutoReconnectionDatabase(RetryOperationalError, peewee_async.PooledPostgresqlDatabase):
+    pass
+
+
 class TestModel(peewee.Model):
-    objects = peewee_async.Manager(TEST_DB)
+    objects = peewee_async.Manager
 
     class Meta:
-        table_name = 'test_table'
         database = TEST_DB
+        table_name = 'test_table'
 
 
 class ExtendedTestModel(TestModel):
