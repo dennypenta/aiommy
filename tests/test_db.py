@@ -1,4 +1,5 @@
 import unittest
+from copy import copy
 
 from peewee import Model
 
@@ -44,7 +45,7 @@ class ManagerTestCase(unittest.TestCase):
         Manager.init(TEST_DB)
 
         with self.assertWarns(Warning):
-            Manager.init(TEST_DB)
+            Manager.init(copy(TEST_DB))
 
     def test_many_model_each_other_inject(self):
         @inject_db(TEST_DB)

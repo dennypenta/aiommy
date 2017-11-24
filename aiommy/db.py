@@ -14,7 +14,7 @@ class Manager(object):
             raise TypeError('db should be instance of `peewee.Database`')
 
         if cls._instance:
-            if cls._instance.database.name == db.name:
+            if cls._instance.database is not db:
                 warnings.warn('Now we are not checking that injected database '
                               'is the same as database were injected before',
                               category=Warning)
