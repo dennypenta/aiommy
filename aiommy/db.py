@@ -1,10 +1,38 @@
+import warnings
+
+import peewee
 import peewee_async
+
+
+class Manager(object):
+    _instance = None
+    _manager = None
+
+    @classmethod
+    def init(cls, db):
+        if not isinstance(db, peewee.Database):
+            raise TypeError('db should be instance of `peewee.Database`')
+
+        if cls._instance and cls._instance.database:
+            warnings.warn('Now we are not checking that injected database '
+                          'is the same as database were injected before',
+                          category=Warning)
+            return cls._instance
+
+        cls._instance = cls(db)
+        return cls._instance
+
+    def __init__(self, db):
+        self._manager = peewee_async.Manager(db)
+
+    def __get__(self, instance, owner):
+        return self._manager
 
 
 def inject_db(db):
     def class_decorator(cls):
         class DatabaseInjectedClass(cls):
-            objects = peewee_async.Manager(db)
+            objects = Manager.init(db)
 
             class Meta:
                 table_name = cls._meta.table_name

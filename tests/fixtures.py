@@ -1,10 +1,11 @@
+from functools import wraps
+
 import peewee
 import peewee_async
 from playhouse.shortcuts import RetryOperationalError
 
 from aiommy.unittest import ModelTestCase
 
-from functools import wraps
 DB_NAME = 'test_db'
 DB_OPTIONS = {
     'user': 'denny'

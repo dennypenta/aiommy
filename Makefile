@@ -19,4 +19,7 @@ packaging:
 	twine upload dist/*
 	rm dist/*
 
+
+lint: flake isort
+
 release: flake isort test packaging
