@@ -13,10 +13,11 @@ class Manager(object):
         if not isinstance(db, peewee.Database):
             raise TypeError('db should be instance of `peewee.Database`')
 
-        if cls._instance and cls._instance.database:
-            warnings.warn('Now we are not checking that injected database '
-                          'is the same as database were injected before',
-                          category=Warning)
+        if cls._instance:
+            if cls._instance.database.name == db.name:
+                warnings.warn('Now we are not checking that injected database '
+                              'is the same as database were injected before',
+                              category=Warning)
             return cls._instance
 
         cls._instance = cls(db)
@@ -35,7 +36,7 @@ def inject_db(db):
             objects = Manager.init(db)
 
             class Meta:
-                table_name = cls._meta.table_name
+                db_table = cls._meta.db_table
                 database = db
 
         DatabaseInjectedClass. __name__ = cls.__name__

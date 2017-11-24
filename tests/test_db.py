@@ -8,15 +8,15 @@ from tests.fixtures import TEST_DB
 
 class InjectDbTestCase(unittest.TestCase):
     def test_db_injected(self):
-        table_name = 'table_name'
+        db_table = 'table_name'
 
         @inject_db(TEST_DB)
         class ModelWithInjectedDb(Model):
             class Meta:
-                table_name = 'table_name'
+                db_table = 'table_name'
 
         self.assertEqual(ModelWithInjectedDb.__name__, 'ModelWithInjectedDb')
-        self.assertEqual(ModelWithInjectedDb._meta.table_name, table_name)
+        self.assertEqual(ModelWithInjectedDb._meta.db_table, db_table)
         self.assertEqual(ModelWithInjectedDb._meta.database, TEST_DB)
         self.assertEqual(ModelWithInjectedDb.objects.database, TEST_DB)
 
@@ -45,3 +45,14 @@ class ManagerTestCase(unittest.TestCase):
 
         with self.assertWarns(Warning):
             Manager.init(TEST_DB)
+
+    def test_many_model_each_other_inject(self):
+        @inject_db(TEST_DB)
+        class Model1(Model):
+            pass
+
+        @inject_db(TEST_DB)
+        class Model2(Model):
+            pass
+
+        self.assertEqual(Model1.objects, Model2.objects)
