@@ -8,6 +8,7 @@ from aiommy.middlewares import (auth_middleware,
                                 logging_middeleware_factory,
                                 permissions_middleware)
 from aiommy.permissions.base import BasePermission
+from aiommy.responses import JsonErrorResponse
 
 
 class MiddlewareTestCase(AioHTTPTestCase):
@@ -109,6 +110,8 @@ class AuthMiddlewareTestCase(MiddlewareTestCase):
 
 
 class LoggingMiddlewareTestCase(MiddlewareTestCase):
+    ERROR_STATUS = 503
+
     def get_app(self):
         return web.Application()
 
@@ -118,18 +121,22 @@ class LoggingMiddlewareTestCase(MiddlewareTestCase):
         self.logger = logging.getLogger(self.logger_name)
         self.logger.http_error = lambda req, res: self.logger.error('msg')
 
+    async def handler_raises_err(self, _):
+        raise JsonErrorResponse('msg', status=self.ERROR_STATUS)
+
+    async def handler_return_err(self, _):
+        return JsonErrorResponse('msg', status=self.ERROR_STATUS)
+
     @unittest_run_loop
     async def test_logging_with_http_exception(self):
-        async def handler_raises_500(_):
-            raise web.HTTPInternalServerError
 
         middleware = logging_middeleware_factory(self.logger)
-        middleware_handler = await middleware(self.app, handler_raises_500)
+        middleware_handler = await middleware(self.app, self.handler_raises_err)
 
         with self.assertLogs(self.logger_name, logging.ERROR):
             response = await middleware_handler(self.request)
 
-        self.assertEqual(response.status, 500)
+        self.assertEqual(response.status, self.ERROR_STATUS)
 
     @unittest_run_loop
     async def test_not_logging_400(self):
@@ -144,6 +151,16 @@ class LoggingMiddlewareTestCase(MiddlewareTestCase):
         with self.assertRaises(AssertionError):
             with self.assertLogs(logger_name, logging.ERROR):
                 await middleware_handler(self.request)
+
+    @unittest_run_loop
+    async def test_msg_empty(self):
+        for h in [self.handler_raises_err, self.handler_return_err]:
+            middleware = logging_middeleware_factory(self.logger)
+            middleware_handler = await middleware(self.app, h)
+
+            response = await middleware_handler(self.request)
+
+            self.assertIsNone(response.text)
 
 
 class ContentTypeSetterMiddlewareTestCase(MiddlewareTestCase):

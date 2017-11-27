@@ -78,14 +78,14 @@ def logging_middeleware_factory(logger):
 
                 logger.http_error(request, response)
 
-                return response
+                return web.Response(status=response.status)
 
             except web.HTTPException as err:
                 if err.status < 500:
                     return err
 
                 logger.http_error(request, err)
-                return err
+                return web.Response(status=err.status)
 
         return middleware_handler
     return logging_middleware
