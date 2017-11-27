@@ -1,10 +1,11 @@
 from aiohttp.web import HTTPException
 
-from aiommy.responses import JsonResponse
-from aiommy.unittest import AioTestCase
+from aiommy.responses import JsonResponse, JsonErrorResponse
+
+import unittest
 
 
-class JsonResponseTestCase(AioTestCase):
+class JsonResponseTestCase(unittest.TestCase):
     response_data = [dict(expect='{"data": 1}',
                           data={'data': 1}),
                      dict(expect='[{"data": 1}]',
@@ -61,3 +62,31 @@ class JsonResponseTestCase(AioTestCase):
                 raise JsonResponse(data['data'])
             except HTTPException as err:
                 self.assertEqual(err.text, data['expect'])
+
+
+class JsonErrorResponseTestCase(unittest.TestCase):
+    response_data = dict(expect='{"error": "msg"}',
+                          data='msg')
+
+    def test_simple_case(self):
+        response = JsonErrorResponse(self.response_data['data'])
+
+        self.assertEqual(response.text, self.response_data['expect'])
+        self.assertEqual(response.status, 400)
+
+    def test_response_change_status(self):
+        response = JsonErrorResponse('msg', 404)
+
+        self.assertEqual(response.status, 404)
+
+    def test_empty_data(self):
+        response = JsonErrorResponse()
+
+        self.assertIsNone(response.text)
+
+    def test_raise_response(self):
+        try:
+            raise JsonErrorResponse(self.response_data['data'])
+        except HTTPException as err:
+            self.assertEqual(err.text, self.response_data['expect'])
+            self.assertEqual(err.status, 400)
