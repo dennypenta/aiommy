@@ -1,7 +1,7 @@
 from aiohttp.test_utils import unittest_run_loop
 
 from aiommy.auth.coding import decode, encode
-from aiommy.unittest import AioTestCase
+from aiommy.testing import AioTestCase
 
 
 class CodingTestCase(AioTestCase):

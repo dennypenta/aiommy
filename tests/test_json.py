@@ -3,7 +3,7 @@ import datetime
 from aiohttp.test_utils import unittest_run_loop
 
 from aiommy.json import dumps
-from aiommy.unittest import AioTestCase
+from aiommy.testing import AioTestCase
 
 
 class JsonTestCase(AioTestCase):

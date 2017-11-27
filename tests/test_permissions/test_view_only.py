@@ -1,7 +1,7 @@
 from aiohttp.test_utils import make_mocked_request, unittest_run_loop
 
 from aiommy.permissions import ViewOnly
-from aiommy.unittest import AioTestCase
+from aiommy.testing import AioTestCase
 
 
 class AuthPermissionTestCase(AioTestCase):

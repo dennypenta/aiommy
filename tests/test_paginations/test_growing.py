@@ -3,7 +3,7 @@ import datetime
 from aiohttp.test_utils import unittest_run_loop
 
 from aiommy.paginations.growing import GrowingPagination
-from aiommy.unittest import ModelTestCase
+from aiommy.testing import ModelTestCase
 from tests.fixtures import TEST_DB, TestingPaginationModel
 
 PAGINATE_BY = 10

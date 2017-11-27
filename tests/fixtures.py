@@ -4,7 +4,7 @@ import peewee
 import peewee_async
 from playhouse.shortcuts import RetryOperationalError
 
-from aiommy.unittest import ModelTestCase
+from aiommy.testing import ModelTestCase
 
 DB_NAME = 'test_db'
 DB_OPTIONS = {
