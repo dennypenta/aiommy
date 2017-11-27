@@ -1,7 +1,6 @@
 import datetime
 
 from aiohttp.test_utils import unittest_run_loop
-
 from aiommy.paginations.falling import FallingPagination
 from aiommy.testing import ModelTestCase
 from tests.fixtures import TEST_DB, TestingPaginationModel

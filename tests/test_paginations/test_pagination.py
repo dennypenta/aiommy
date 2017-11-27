@@ -1,5 +1,4 @@
 from aiohttp.test_utils import unittest_run_loop
-
 from aiommy.paginations.base import BaseCursorPagination
 from aiommy.testing import ModelTestCase
 from tests.fixtures import TEST_DB, TestModel

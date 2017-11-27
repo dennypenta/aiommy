@@ -3,7 +3,6 @@ import re
 
 import pytz
 from aiohttp.test_utils import unittest_run_loop
-
 from aiommy import dateutils
 from aiommy.testing import AioTestCase
 

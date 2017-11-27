@@ -1,5 +1,4 @@
 from aiohttp import web
-
 from aiommy.permissions.base import BasePermission
 
 

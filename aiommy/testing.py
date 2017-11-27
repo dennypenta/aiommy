@@ -4,7 +4,6 @@ import unittest
 
 import peewee_async
 from aiohttp.test_utils import AioHTTPTestCase
-
 from aiommy.dateutils import to_iso
 
 

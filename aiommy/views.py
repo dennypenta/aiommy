@@ -1,8 +1,7 @@
 from aiohttp import web
-from cerberus import Validator
-
 from aiommy.json import dumps
 from aiommy.normalizers import BaseNormalizer
+from cerberus import Validator
 
 
 class BaseView(web.View):

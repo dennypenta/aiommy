@@ -2,7 +2,6 @@ import json
 
 from aiohttp import web
 from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop
-
 from aiommy.views import JsonifyResponseView
 
 

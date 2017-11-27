@@ -2,9 +2,8 @@ from functools import wraps
 
 import peewee
 import peewee_async
-from playhouse.shortcuts import RetryOperationalError
-
 from aiommy.testing import ModelTestCase
+from playhouse.shortcuts import RetryOperationalError
 
 DB_NAME = 'test_db'
 DB_OPTIONS = {

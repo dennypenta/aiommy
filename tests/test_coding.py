@@ -1,5 +1,4 @@
 from aiohttp.test_utils import unittest_run_loop
-
 from aiommy.middlewares import decode, encode
 from aiommy.testing import AioTestCase
 

@@ -1,7 +1,5 @@
 from aiohttp.web import HTTPException
-
 from aiommy.json import dumps
-
 
 JSON_ERROR_KEY = 'error'
 

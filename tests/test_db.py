@@ -1,9 +1,8 @@
 import unittest
 from copy import copy
 
-from peewee import Model
-
 from aiommy.db import Manager, inject_db
+from peewee import Model
 from tests.fixtures import TEST_DB
 
 

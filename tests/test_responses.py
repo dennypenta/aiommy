@@ -1,8 +1,7 @@
-from aiohttp.web import HTTPException
-
-from aiommy.responses import JsonResponse, JsonErrorResponse
-
 import unittest
+
+from aiohttp.web import HTTPException
+from aiommy.responses import JsonErrorResponse, JsonResponse
 
 
 class JsonResponseTestCase(unittest.TestCase):

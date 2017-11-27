@@ -1,6 +1,5 @@
-from jwt.exceptions import DecodeError
-
 from aiommy.auth.coding import decode
+from jwt.exceptions import DecodeError
 
 
 def read_token(header, secret):

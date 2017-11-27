@@ -1,5 +1,4 @@
 from aiohttp.test_utils import unittest_run_loop
-
 from aiommy.normalizers import BaseNormalizer
 from aiommy.testing import AioTestCase
 from tests.fixtures import ExtendedTestModel

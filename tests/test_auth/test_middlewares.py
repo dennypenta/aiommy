@@ -1,6 +1,5 @@
 from aiohttp import web
 from aiohttp.test_utils import make_mocked_request, unittest_run_loop
-
 from aiommy.auth.coding import encode
 from aiommy.auth.middlewares import auth_middleware_factory
 from aiommy.testing import AioTestCase
