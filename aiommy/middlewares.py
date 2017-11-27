@@ -68,7 +68,7 @@ async def permissions_middleware(app, handler):
     return middleware_handler
 
 
-def logging_middeleware_factory(logger):
+def logging_middleware_factory(logger):
     async def logging_middleware(app, handler):
         async def middleware_handler(request):
             try:

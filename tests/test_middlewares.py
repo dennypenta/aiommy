@@ -5,7 +5,7 @@ from aiohttp.test_utils import (AioHTTPTestCase, make_mocked_request,
                                 unittest_run_loop)
 from aiommy.middlewares import (auth_middleware,
                                 content_type_setter_middleware_factory, encode,
-                                logging_middeleware_factory,
+                                logging_middleware_factory,
                                 permissions_middleware)
 from aiommy.permissions.base import BasePermission
 from aiommy.responses import JsonErrorResponse
@@ -130,7 +130,7 @@ class LoggingMiddlewareTestCase(MiddlewareTestCase):
     @unittest_run_loop
     async def test_logging_with_http_exception(self):
 
-        middleware = logging_middeleware_factory(self.logger)
+        middleware = logging_middleware_factory(self.logger)
         middleware_handler = await middleware(self.app, self.handler_raises_err)
 
         with self.assertLogs(self.logger_name, logging.ERROR):
@@ -145,7 +145,7 @@ class LoggingMiddlewareTestCase(MiddlewareTestCase):
 
         logger_name = 'test'
 
-        middleware = logging_middeleware_factory(logging.getLogger(logger_name))
+        middleware = logging_middleware_factory(logging.getLogger(logger_name))
         middleware_handler = await middleware(self.app, handler_raises_404)
 
         with self.assertRaises(AssertionError):
@@ -155,7 +155,7 @@ class LoggingMiddlewareTestCase(MiddlewareTestCase):
     @unittest_run_loop
     async def test_msg_empty(self):
         for h in [self.handler_raises_err, self.handler_return_err]:
-            middleware = logging_middeleware_factory(self.logger)
+            middleware = logging_middleware_factory(self.logger)
             middleware_handler = await middleware(self.app, h)
 
             response = await middleware_handler(self.request)
